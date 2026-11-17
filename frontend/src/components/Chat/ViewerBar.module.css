@@ -1,0 +1,59 @@
+.bar {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 4px 12px;
+    padding: 6px 10px;
+    flex-shrink: 0;
+    pointer-events: none;
+    user-select: none;
+    font-family: var(--theme-font-family, inherit);
+    font-size: var(--theme-font-size, 14px);
+    font-weight: 700;
+    line-height: 1.2;
+    color: var(--theme-text-color, #ffffff);
+    text-shadow: var(--theme-text-shadow, 0 1px 3px rgba(0, 0, 0, 0.9));
+    -webkit-text-stroke: var(--theme-text-stroke, 0);
+    paint-order: stroke fill;
+    font-variant-numeric: tabular-nums;
+}
+
+.total,
+.chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    white-space: nowrap;
+}
+
+.total {
+    font-size: 1.15em;
+}
+
+.dot {
+    width: 0.6em;
+    height: 0.6em;
+    border-radius: 50%;
+    background-color: #ff3b30;
+    box-shadow: 0 0 6px rgba(255, 59, 48, 0.9);
+    animation: pulse 2s ease-in-out infinite;
+}
+
+.icon {
+    width: 1.05em;
+    height: 1.05em;
+    flex-shrink: 0;
+    filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.9));
+}
+
+@keyframes pulse {
+    50% {
+        opacity: 0.45;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .dot {
+        animation: none;
+    }
+}

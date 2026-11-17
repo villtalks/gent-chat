@@ -1,0 +1,33 @@
+import type { Platform } from '@bindings/ghost-chat/internal/chat/models.js';
+
+import { AutoConnect as runAutoConnect } from '@bindings/ghost-chat/app.js';
+import { useEffect } from 'react';
+import { useTranslation } from 'react-i18next';
+import { useNavigate } from 'react-router-dom';
+
+import { PLATFORMS } from '@/platforms';
+import { useConnectionStore } from '@/stores/connection';
+
+const labelKeys: Partial<Record<Platform, string>> = Object.fromEntries(PLATFORMS.map((p) => [p.id, p.labelKey]));
+
+export function AutoConnect() {
+    const { t } = useTranslation();
+    const navigate = useNavigate();
+
+    useEffect(() => {
+        void runAutoConnect()
+            .then((results) => {
+                const label = (platform: Platform) => (labelKeys[platform] ? t(labelKeys[platform]) : String(platform));
+                const anyConnected = useConnectionStore.getState().applyAutoConnectResults(results, label);
+
+                if (anyConnected) {
+                    void navigate('/chat');
+                }
+            })
+            .catch((err: unknown) => {
+                useConnectionStore.getState().setError(String(err));
+            });
+    }, [navigate, t]);
+
+    return null;
+}

@@ -1,0 +1,24 @@
+# Go
+*bin/
+*.syso
+
+# Wails
+.task
+
+# Frontend
+node_modules
+frontend/dist
+
+# Logs
+*.log
+
+# Editor and OS files
+.vscode
+.idea
+.DS_Store
+Thumbs.db
+*.sw?
+
+# Lockfile (pnpm only)
+package-lock.json
+yarn.lock

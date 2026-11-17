@@ -1,0 +1,39 @@
+# Project configuration for the Wails v3 CLI.
+version: '3'
+
+# Used to generate the Windows version resources.
+info:
+  companyName: "GENT"
+  productName: "GENT Chat"
+  productIdentifier: "app.gentchat.desktop"
+  description: "Chat and viewer overlay for streamers, based on Ghost Chat by enubia"
+  copyright: "Based on Ghost Chat (c) 2026 enubia"
+  version: "4.10.0"
+
+# Dev mode configuration
+dev_mode:
+  root_path: .
+  log_level: warn
+  debounce: 1000
+  ignore:
+    dir:
+      - .git
+      - node_modules
+      - frontend
+      - bin
+    file:
+      - .DS_Store
+      - .gitignore
+      - .gitkeep
+    watched_extension:
+      - "*.go"
+      - "*.js" # Watch for changes to JS/TS files included using the //wails:include directive.
+      - "*.ts" # The frontend directory will be excluded entirely by the setting above.
+    git_ignore: true
+  executes:
+    - cmd: wails3 build DEV=true
+      type: blocking
+    - cmd: wails3 task common:dev:frontend
+      type: background
+    - cmd: wails3 task run
+      type: primary

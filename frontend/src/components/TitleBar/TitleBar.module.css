@@ -1,0 +1,80 @@
+.titlebar {
+    display: flex;
+    align-items: center;
+    height: var(--titlebar-height);
+    background: var(--color-bg-sunken);
+    border-bottom: 1px solid var(--color-border);
+    flex-shrink: 0;
+    user-select: none;
+
+    :global([data-vanished]) & {
+        visibility: hidden;
+    }
+}
+
+.drag {
+    flex: 1;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding-left: 12px;
+    --wails-draggable: drag;
+}
+
+.logo {
+    height: 16px;
+    width: auto;
+}
+
+.title {
+    font-family: var(--font-display);
+    font-size: 13px;
+    font-weight: 400;
+    color: var(--color-accent);
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+}
+
+.hotkeyHint {
+    font-size: 10px;
+    font-weight: 600;
+    color: var(--color-warning);
+    background: rgba(212, 160, 83, 0.15);
+    padding: 2px 8px;
+    border-radius: var(--radius-sm);
+}
+
+.controls {
+    display: flex;
+    align-items: center;
+    gap: 2px;
+    padding-right: 8px;
+}
+
+.controlBtn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 28px;
+    height: 28px;
+    border-radius: var(--radius-sm);
+    color: var(--color-text-muted);
+    transition:
+        background var(--transition-fast),
+        color var(--transition-fast);
+
+    &:hover {
+        background: var(--color-bg-hover);
+        color: var(--color-text);
+    }
+
+    &.active {
+        color: var(--color-accent);
+    }
+
+    &.close:hover {
+        background: var(--color-danger);
+        color: #fff;
+    }
+}

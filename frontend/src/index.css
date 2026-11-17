@@ -1,0 +1,298 @@
+@font-face {
+    font-family: 'Silkscreen';
+    font-weight: 400;
+    font-display: block;
+    src: url('./assets/fonts/Silkscreen-Regular.woff2') format('woff2');
+}
+
+@font-face {
+    font-family: 'Silkscreen';
+    font-weight: 700;
+    font-display: block;
+    src: url('./assets/fonts/Silkscreen-Bold.woff2') format('woff2');
+}
+
+@font-face {
+    font-family: 'Montserrat';
+    font-weight: 100 900;
+    font-display: block;
+    src: url('./assets/fonts/Montserrat-Variable.woff2') format('woff2');
+}
+
+/* Dark look: near-black surfaces, yellow accent, Silkscreen display type. */
+:root {
+    --color-bg: #101010;
+    --color-bg-raised: #161616;
+    --color-bg-sunken: #1c1c1c;
+    --color-bg-hover: #232323;
+    --color-surface: #1c1c1c;
+    --color-border: #232323;
+    --color-border-strong: #2c2c2c;
+    --color-text: #ffffff;
+    --color-text-muted: #9a9a9a;
+    --color-text-dim: #5c5c5c;
+    --color-accent: #ffeb3b;
+    --color-accent-hover: #fff176;
+    --color-accent-muted: #ffeb3b33;
+    --color-on-accent: #121212;
+    --color-danger: #ff6b6b;
+    --color-success: #6fcc8a;
+    --color-warning: #ffeb3b;
+
+    --radius-sm: 6px;
+    --radius-md: 10px;
+    --radius-lg: 14px;
+
+    --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.3);
+    --shadow-md: 0 2px 8px rgba(0, 0, 0, 0.4);
+
+    --font-sans: 'Montserrat', system-ui, -apple-system, 'Segoe UI', sans-serif;
+    --font-mono: ui-monospace, 'Cascadia Mono', Consolas, monospace;
+    --font-display: 'Silkscreen', 'Montserrat', ui-monospace, monospace;
+
+    --transition-fast: 120ms ease;
+    --transition-normal: 200ms ease;
+
+    --titlebar-height: 38px;
+}
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: var(--font-sans);
+    background-color: var(--color-bg);
+    color: var(--color-text);
+    font-size: 14.5px;
+    line-height: 1.5;
+    overflow: hidden;
+    -webkit-font-smoothing: antialiased;
+}
+
+input,
+select,
+button,
+textarea {
+    font-family: inherit;
+    font-size: inherit;
+    color: inherit;
+}
+
+input[type='text'],
+input[type='number'],
+input[type='url'],
+select,
+textarea {
+    background: var(--color-bg-sunken);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-sm);
+    padding: 8px 10px;
+    color: var(--color-text);
+    outline: none;
+    width: 100%;
+    transition: border-color var(--transition-fast);
+
+    &:focus {
+        border-color: var(--color-accent);
+    }
+
+    &::placeholder {
+        color: var(--color-text-dim);
+    }
+}
+
+button {
+    cursor: pointer;
+    border: none;
+    background: none;
+    padding: 0;
+}
+
+.btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    padding: 6px 14px;
+    border-radius: var(--radius-sm);
+    font-family: var(--font-display);
+    font-weight: 400;
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.3px;
+    transition:
+        background var(--transition-fast),
+        opacity var(--transition-fast);
+
+    &:disabled {
+        opacity: 0.4;
+        cursor: not-allowed;
+    }
+}
+
+.btn-primary {
+    background: var(--color-accent);
+    color: var(--color-on-accent);
+
+    &:hover:not(:disabled) {
+        background: var(--color-accent-hover);
+    }
+}
+
+.btn-ghost {
+    color: var(--color-text-muted);
+
+    &:hover:not(:disabled) {
+        background: var(--color-bg-hover);
+        color: var(--color-text);
+    }
+}
+
+.btn-danger {
+    background: rgba(255, 107, 107, 0.12);
+    color: var(--color-danger);
+    border: 1px solid rgba(255, 107, 107, 0.3);
+
+    &:hover:not(:disabled) {
+        background: rgba(255, 107, 107, 0.22);
+    }
+}
+
+.field {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.field-label {
+    font-size: 12px;
+    font-weight: 500;
+    color: var(--color-text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.field-input-row {
+    display: flex;
+    gap: 6px;
+}
+
+.field-error {
+    font-size: 11px;
+    color: var(--color-danger);
+    margin-top: 2px;
+}
+
+.field-success {
+    font-size: 11px;
+    color: var(--color-success);
+    margin-top: 2px;
+}
+
+.field-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+}
+
+.field-section {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    margin-top: 8px;
+}
+
+.field-section-label {
+    font-family: var(--font-display);
+    font-size: 11px;
+    font-weight: 400;
+    color: var(--color-text-dim);
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+}
+
+.field-hint {
+    font-size: 11px;
+    color: var(--color-text-dim);
+}
+
+.toggle {
+    position: relative;
+    width: 36px;
+    height: 20px;
+    flex-shrink: 0;
+
+    & input {
+        opacity: 0;
+        width: 0;
+        height: 0;
+    }
+
+    & .toggle-slider {
+        position: absolute;
+        inset: 0;
+        background: var(--color-bg-sunken);
+        border: 1px solid var(--color-border);
+        border-radius: 10px;
+        cursor: pointer;
+        transition:
+            background var(--transition-fast),
+            border-color var(--transition-fast);
+
+        &::before {
+            content: '';
+            position: absolute;
+            top: 2px;
+            left: 2px;
+            width: 14px;
+            height: 14px;
+            background: var(--color-text-muted);
+            border-radius: 50%;
+            transition:
+                transform var(--transition-fast),
+                background var(--transition-fast);
+        }
+    }
+
+    & input:checked + .toggle-slider {
+        background: var(--color-accent-muted);
+        border-color: var(--color-accent);
+
+        &::before {
+            transform: translateX(16px);
+            background: var(--color-accent);
+        }
+    }
+}
+
+html[data-vanished],
+html[data-vanished] body {
+    background: transparent !important;
+}
+
+html[data-vanished] ::-webkit-scrollbar {
+    display: none;
+}
+
+::-webkit-scrollbar {
+    width: 6px;
+}
+
+::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--color-border);
+    border-radius: 3px;
+
+    &:hover {
+        background: var(--color-border-strong);
+    }
+}
